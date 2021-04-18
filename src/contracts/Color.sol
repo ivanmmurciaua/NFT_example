@@ -1,12 +1,12 @@
 pragma solidity ^0.5.16;
 
 // Import ERC721 contract from Open Zeppelin lib
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "./ERC721Full.sol";
 
 /**
  * The Color contract
  */
-contract Color is ERC721 {
+contract Color is ERC721Full {
 
 	// Store colors
 	string[] public colors;
@@ -15,7 +15,7 @@ contract Color is ERC721 {
 	mapping(string => bool) _colorExists;
 
 	// ERC721 Constructor 
-	constructor() ERC721("Color", "COLOR") public {
+	constructor() ERC721Full("Color", "COLOR") public {
 	}
 
 	// Mint colors
@@ -30,7 +30,7 @@ contract Color is ERC721 {
 
 		// Mint a color with _mint from OZ_ERC721
 		_mint(msg.sender, _id);
-		
+
 	}
 	
 }
