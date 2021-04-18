@@ -39,8 +39,8 @@ class App extends Component {
       const totalSupply = await contract.methods.totalSupply().call()
       this.setState({ totalSupply })
       // Load Colors
-      for (var i = 1; i <= totalSupply; i++) {
-        const color = await contract.methods.colors(i - 1).call()
+      for (var i = 0; i < totalSupply; i++) {
+        const color = await contract.methods.checkColor(i, this.state.account).call()
         this.setState({
           colors: [...this.state.colors, color]
         })
@@ -91,7 +91,7 @@ class App extends Component {
           <div className="row">
             <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
-                <h1>Issue Token</h1>
+                <h1>Mint Color</h1>
                 <form onSubmit={(event) => {
                   event.preventDefault()
                   const color = this.color.value
